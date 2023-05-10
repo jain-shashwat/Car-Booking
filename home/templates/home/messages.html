@@ -1,0 +1,16 @@
+{% if messages %}
+    {%  for message in messages %}
+        {% if message.tags == 'info' %}
+             <br>
+             <div class="alert alert-primary" role="alert">
+  {{message}}
+</div>
+        {% endif %}
+
+
+    {% endfor %}
+{%  endif %}
+
+<script type="text/javascript">
+	
+</script>

@@ -1,0 +1,46 @@
+
+{% extends 'home/base.html' %}
+{% block body %}
+<div class ="container">
+{% include 'home/messages.html ' %}
+{% load crispy_forms_tags %}
+
+
+    <form action="{% url 'home:booking' id  %}" method="post">
+         {% csrf_token %}
+   
+<div id="div_id_visitor_name" class="control-group"> <label for="id_visitor_name" class="control-label requiredField">
+                Visitor name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="visitor_name" class="form-control textinput textInput" maxlength="200" required id="id_visitor_name"> </div> </div> <div id="div_id_phone_number" class="control-group"> <label for="id_phone_number" class="control-label requiredField">
+                Phone number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="phone_number" value="0" class="form-control textinput textInput" required id="id_phone_number"> </div> </div> <input type="hidden" name="event_name" id="id_event_name"> <div id="div_id_time_preference" class="control-group"> <label for="id_time_preference" class="control-label requiredField">
+                <span class="asteriskField">*</span> </label> <div class="controls"> <select hidden name="time_preference" class="form-control select" id="id_time_preference"> <option value="Moring 9-12">Moring 9-12</option> <option value="12-3 ">12-3</option> <option value="3-6">3-6</option> <option value="6-9">6-9</option> <option value="night 9-12">night 9-12</option>
+
+</select> </div> </div> <div id="div_id_platinum_seats" class="control-group"> <label for="id_platinum_seats" class="control-label requiredField">
+                Platinum seats<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="platinum_seats" value="0" class="form-control textinput textInput" required id="id_platinum_seats"> </div> </div> <div id="div_id_gold_seats" class="control-group"> <label for="id_gold_seats" class="control-label requiredField">
+                Gold seats<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="gold_seats" value="0" class="form-control textinput textInput" required id="id_gold_seats"> </div> </div> <div id="div_id_silver_seats" class="control-group"> <label for="id_silver_seats" class="control-label requiredField">
+                Silver seats<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="silver_seats" value="0" class="form-control textinput textInput" required id="id_silver_seats"> </div> </div> <input type="hidden" name="booking_date" value="2019-03-08 11:09:47.762582+00:00" class="form-control" id="id_booking_date"><input type="hidden" name="initial-booking_date" value="2019-03-08 11:09:47.762582+00:00" id="initial-id_booking_date">
+
+
+    <br>
+    <input  class ="btn btn-primary " type="submit" value="submit">
+</form>
+
+</div>
+<script type="text/javascript">
+    document.getElementById('id_event_name').setAttribute("value","{{name}}");
+
+    time_preference=sessionStorage.getItem("time");
+    date=sessionStorage.getItem("date");
+    document.getElementById('id_booking_date').setAttribute("value",date);
+    var e=document.getElementById('id_time_preference');
+    ind=e.options[e.selectedIndex];
+    ind.value=time_preference;
+    ind.innerHTML=time_preference;
+    
+
+
+
+
+</script>
+ 
+
+{% endblock %}

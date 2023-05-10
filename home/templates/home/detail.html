@@ -1,0 +1,87 @@
+{% extends 'home/base.html' %}
+{% block body %}
+
+
+
+<div class="row">
+  <div class="col md-4 ">
+    <div class="card" style="width: 18rem;">
+      <img src="{{object.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{object.name}}</h5>
+        <p class="card-text">{{object.discription|slice:"0:200"}}</p>
+        <p class="card-text"><b>Last Date for booking:{{object.last_date}}</b></p>
+        <a href="{% url 'home:booking' object.id  %}" class="btn btn-primary">Book</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col md-8">
+
+
+
+  <form action="{% url  'home:check_avai' object.id   %}" method="post">
+    {% csrf_token %}
+     <div style="padding: 20px" id="div_id_time_preference" class="control-group"> <label for="id_time_preference" class="control-label requiredField">
+    Time preference<span class="asteriskField">*</span> </label> <div class="controls"> <select   name="time_preference" class="form-control select" id="id_time_preference" > 
+      
+    <option value="Moring 10-12">Moring 10-12</option>
+
+  <option value="12-2 ">12-2</option>
+
+  <option value="2-4">2-4</option>
+
+  <option value="4-6">4-6</option>
+
+  <option value="6-8">6-8</option>
+
+  <option value="night 8-10">night 8-10</option>
+
+    </select>
+    <br><br>
+
+
+
+
+
+    <input type="hidden" name="event_name" id="id_event_name">
+    <div id="div_id_booking_date" class="control-group"> <label for="id_booking_date" class="control-label requiredField">
+      Booking date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="booking_date" value="" class="form-control textinput textInput" required id="id_booking_date">
+
+
+    </div><br> 
+    <input type="submit" onclick="get_user_input();"  class="btn btn-primary" name="" value="Check Avaiabilty">
+  </div>
+  </form>
+  {% include 'home/messages.html ' %}
+</div>
+<script type="text/javascript">
+     date=sessionStorage.getItem("date");
+     
+    document.getElementById('id_event_name').setAttribute("value","{{object}}");
+    document.getElementById('id_booking_date').setAttribute("value",date);
+    time=sessionStorage.getItem("time");
+    document.getElementById('o1').setAttribute("value",time);
+    document.getElementById('o1').innerHTML=time
+
+  
+
+
+    
+
+
+
+
+    function get_user_input(){
+      get_time_pref=document.getElementById('id_time_preference').value;
+      get_date=document.getElementById('id_booking_date').value;
+      time=sessionStorage.setItem("time",get_time_pref);
+      date=sessionStorage.setItem("date",get_date);
+      document.getElementById('id_booking_date').setAttribute("value",date);
+    }
+    
+</script>
+    
+
+
+{% endblock %}

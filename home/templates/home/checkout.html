@@ -1,0 +1,49 @@
+{% extends 'home/base.html' %}
+{% block body %}
+<div class ="container">
+{% include 'home/messages.html ' %}
+
+    <h1>namaste checkout page </h1>
+
+
+    <table class="table">
+
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Platinum seats</th>
+              <th scope="col">Gold seats</th>
+              <th scope="col">Silver Seats</th>
+              <th scope="col">Platinum total</th>
+              <th scope="col">Gold total</th>
+              <th scope="col">Silver total</th>
+              <th scope="col">Booking date</th>
+              <th scope="col">Total</th>
+            </tr>
+           </thead>
+
+
+           <tbody>
+           <tr>
+               <th scope="col">{{visitor_name}}</th>
+               <th scope="col">{{phone_number}}</th>
+               <th scope="col">{{platinum_seats}}</th>
+               <th scope="col">{{gold_seats}}</th>
+               <th scope="col">{{silver_seats}}</th>
+               <th scope="col">{{total_platinum_price}}</th>
+               <th scope="col">{{total_gold_price}}</th>
+               <th scope="col">{{total_silver_price}}</th>
+               <th scope="col">{{booked_date}}</th>
+               <th scope="col">{{net_price}}</th>
+
+
+
+
+           </tr>
+
+           </tbody>
+    </table>
+</div>
+{% endblock %}
+

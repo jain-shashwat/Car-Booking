@@ -1,0 +1,23 @@
+
+{% extends 'home/base.html' %}
+
+{% block body %}
+<div class="row">
+
+{% for event in events %}
+
+    <div class="col md-6">
+        <div class="card box-shadow" style="width: 18rem;">
+  <img src="{{event.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{event.name}}</h5>
+    <h5 class="card-title">{{event.city}},{{event.venuname}}</h5>
+    <!-- <h5 class="card-title">{{event.venuname}}</h5> -->
+    <p class="card-text">{{event.discription|slice:"0:50"}}....</p>
+    <a href="{% url 'home:detail' event.id %}" class="btn btn-primary">View</a>
+  </div>
+</div>
+    </div>
+{% endfor %}
+    </div>
+{% endblock %}
